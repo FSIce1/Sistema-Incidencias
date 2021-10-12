@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Ingresar Película
+        </title>
+        <meta name="description" content="Validation">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+        <!-- Call App Mode on ios devices -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- base css -->
+        <link rel="stylesheet" media="screen, print" href="../../css/vendors.bundle.css">
+        <link rel="stylesheet" media="screen, print" href="../../css/app.bundle.css">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../../img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon/favicon-32x32.png">
+        <link rel="mask-icon" href="../../img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+
+        <link rel="stylesheet" media="screen, print" href="../../css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+
+        <link rel="stylesheet" media="screen, print" href="../../css/formplugins/select2/select2.bundle.css">
+
+
+    </head>
+    <body class="mod-bg-1 ">
+        <!-- DOC: script to save and load page settings -->
+        <script>
+            /**
+             *	This script should be placed right after the body tag for fast execution 
+             *	Note: the script is written in pure javascript and does not depend on thirdparty library
+             **/
+            'use strict';
+
+            var classHolder = document.getElementsByTagName("BODY")[0],
+                    /** 
+                     * Load from localstorage
+                     **/
+                    themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                    {},
+                    themeURL = themeSettings.themeURL || '',
+                    themeOptions = themeSettings.themeOptions || '';
+            /** 
+             * Load theme options
+             **/
+            if (themeSettings.themeOptions)
+            {
+                classHolder.className = themeSettings.themeOptions;
+                console.log("%c✔ Theme settings loaded", "color: #148f32");
+            } else
+            {
+                console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+            }
+            if (themeSettings.themeURL && !document.getElementById('mytheme'))
+            {
+                var cssfile = document.createElement('link');
+                cssfile.id = 'mytheme';
+                cssfile.rel = 'stylesheet';
+                cssfile.href = themeURL;
+                document.getElementsByTagName('head')[0].appendChild(cssfile);
+            }
+            /** 
+             * Save to localstorage 
+             **/
+            var saveSettings = function ()
+            {
+                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function (item)
+                {
+                    return /^(nav|header|mod|display)-/i.test(item);
+                }).join(' ');
+                if (document.getElementById('mytheme'))
+                {
+                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                }
+                ;
+                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            }
+            /** 
+             * Reset settings
+             **/
+            var resetSettings = function ()
+            {
+                localStorage.setItem("themeSettings", "");
+            }
+
+        </script>
+        <!-- BEGIN Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="page-inner">
+
+                <!-- BEGIN Left Aside -->
+                <aside class="page-sidebar">
+                    <div class="page-logo">
+                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+                            <img src="../../img/logo.png" alt="MovJar" aria-roledescription="logo">
+                            <span class="page-logo-text mr-1">MovJar</span>
+                            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+                            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+                        </a>
+                    </div>
+                    <!-- BEGIN PRIMARY NAVIGATION -->
+                    <nav id="js-primary-nav" class="primary-nav" role="navigation">
+                        <div class="nav-filter">
+                            <div class="position-relative">
+                                <input type="text" id="nav_filter_input" placeholder="Filter menu" class="form-control" tabindex="0">
+                                <a href="#" onclick="return false;" class="btn-primary btn-search-close js-waves-off" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar">
+                                    <i class="fal fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <img src="../../img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                            <div class="info-card-text">
+                                <a href="#" class="d-flex align-items-center text-white">
+                                    <span class="text-truncate text-truncate-sm d-inline-block">
+                                        Dr. Codex Lantern
+                                    </span>
+                                </a>
+                                <span class="d-inline-block text-truncate text-truncate-sm">Toronto, Canada</span>
+                            </div>
+                            <img src="../../img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
+                            <a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
+                                <i class="fal fa-angle-down"></i>
+                            </a>
+                        </div>
+
+                        <!-- INICIO DE MENÚ -->
+
+                        <ul id="js-nav-menu" class="nav-menu">
+                            <li>
+                                <a href="#" title="Inicio" data-filter-tags="inicio">
+                                    <i class="fal fa-info-circle"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Inicio</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="../inicio/inicio.perfil_usuario.html" title="Perfil" data-filter-tags="perfil">
+                                            <span class="nav-link-text" data-i18n="perfil de inicio">Perfil</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" title="Opciones" data-filter-tags="opciones">
+                                    <i class="fal fa-cog"></i>
+                                    <span class="nav-link-text" data-i18n="opciones">Opciones</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="#" title="Configuraciones Generales" data-filter-tags="configuraciones generales">
+                                            <span class="nav-link-text" data-i18n="configuraciones generales">Configuraciones Generales</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-title">Vista Administrador</li>
+
+                            <li>
+                                <a href="#" title="Usuario" data-filter-tags="usuario">
+                                    <i class="fal fa-window"></i>
+                                    <span class="nav-link-text" data-i18n="usuario">Usuario</span>
+                                </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="../usuario/usuario.lista_usuarios.html" title="Lista de Usuarios" data-filter-tags="lista de usuarios">
+                                            <span class="nav-link-text" data-i18n="lista de usuarios">Lista de Usuarios</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <li>
+                                <a href="#" title="Estadísticas" data-filter-tags="estadísticas">
+                                    <i class="fal fa-chart-pie"></i>
+                                    <span class="nav-link-text" data-i18n="estadísticas">Estadísticas</span>
+                                </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="#" title="Usuarios" data-filter-tags="usuarios">
+                                            <span class="nav-link-text" data-i18n="usuarios">Usuarios</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" title="Películas" data-filter-tags="películas">
+                                            <span class="nav-link-text" data-i18n="películas">Películas</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-title">Vista de Usuario</li>
+
+                            <li class="active open">
+                                <a href="#" title="películas" data-filter-tags="películas">
+                                    <i class="fal fa-eject"></i>
+                                    <span class="nav-link-text" data-i18n="películas">Películas</span>
+                                </a>
+
+                                <ul>
+
+                                    <li class="active">
+                                        <a href="../pelicula/pelicula.lista_peliculas.html" title="Lista de Películas" data-filter-tags="lista de películas">
+                                            <span class="nav-link-text" data-i18n="lista de películas">Lista de Películas</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="../pelicula/pelicula.lista_imagenes.html" title="Ver imágenes" data-filter-tags="lista de imágenes">
+                                            <span class="nav-link-text" data-i18n="lista de imágenes">Ver imágenes</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" title="perfiles" data-filter-tags="perfiles">
+                                    <i class="fal fa-user"></i>
+                                    <span class="nav-link-text" data-i18n="perfiles">Perfiles</span>
+                                </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="#" title="Lista de Usuarios" data-filter-tags="lista de usuarios">
+                                            <span class="nav-link-text" data-i18n="lista de usuarios">Lista de Usuarios</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" title="Usuarios Seguidos" data-filter-tags="usuarios seguidos">
+                                            <span class="nav-link-text" data-i18n="usuarios seguidos">Usuarios Seguidos</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" title="Estadísticas" data-filter-tags="estadísticas">
+                                    <i class="fal fa-chart-pie"></i>
+                                    <span class="nav-link-text" data-i18n="estadísticas">Estadísticas</span>
+                                </a>
+
+                                <ul>
+                                    <li>
+                                        <a href="#" title="Películas" data-filter-tags="películas">
+                                            <span class="nav-link-text" data-i18n="películas">Películas</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                        <!-- FIN DE MENÚ-->
+
+                        <div class="filter-message js-filter-message bg-success-600"></div>
+                    </nav>
+                    <!-- END PRIMARY NAVIGATION -->
+
+                </aside>
+                <!-- END Left Aside -->
+
+
+                <div class="page-content-wrapper">
+                    <!-- BEGIN Page Header -->
+                    <header class="page-header" role="banner">
+                        <!-- we need this logo when user switches to nav-function-top -->
+                        <div class="page-logo">
+                            <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+                                <img src="../../img/logo.png" alt="JarMov" aria-roledescription="logo">
+                                <span class="page-logo-text mr-1">JarMov</span>
+                                <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+                                <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+                            </a>
+                        </div>
+
+                        <!-- DOC: nav menu layout change shortcut -->
+                        <div class="hidden-md-down dropdown-icon-menu position-relative">
+                            <a href="#" class="header-btn btn js-waves-off" data-action="toggle" data-class="nav-function-hidden" title="Hide Navigation">
+                                <i class="ni ni-menu"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-minify" title="Minify Navigation">
+                                        <i class="ni ni-minify-nav"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-fixed" title="Lock Navigation">
+                                        <i class="ni ni-lock-nav"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- DOC: mobile button appears during mobile width -->
+
+                        <div class="hidden-lg-up">
+                            <a href="#" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+                                <i class="ni ni-menu"></i>
+                            </a>
+                        </div>
+
+                        <div class="ml-auto d-flex">
+                            <!-- activate app search icon (mobile) -->
+                            <div class="hidden-sm-up">
+                                <a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
+                                    <i class="fal fa-search"></i>
+                                </a>
+                            </div>
+                            <!-- app settings -->
+                            <div class="hidden-md-down">
+                                <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-settings">
+                                    <i class="fal fa-cog"></i>
+                                </a>
+                            </div>
+
+                            <!-- app message -->
+                            <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
+                                <i class="fal fa-globe"></i>
+                                <span class="badge badge-icon">!</span>
+                            </a>
+
+                            <!-- app notification -->
+                            <div>
+                                <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
+                                    <i class="fal fa-bell"></i>
+                                    <span class="badge badge-icon">11</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-xl">
+                                    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top mb-2">
+                                        <h4 class="m-0 text-center color-white">
+                                            11 Nuevas
+                                            <small class="mb-0 opacity-80">Notificaciones</small>
+                                        </h4>
+                                    </div>
+                                    <ul class="nav nav-tabs nav-tabs-clean" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link px-4 fs-md js-waves-on fw-500" data-toggle="tab" href="#tab-messages" data-i18n="drpdwn.messages">Mensajes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link px-4 fs-md js-waves-on fw-500" data-toggle="tab" href="#tab-feeds" data-i18n="drpdwn.feeds">Notificación</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link px-4 fs-md js-waves-on fw-500" data-toggle="tab" href="#tab-events" data-i18n="drpdwn.events">Eventos</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content tab-notification">
+                                        <div class="tab-pane active p-3 text-center">
+                                            <h5 class="mt-4 pt-4 fw-500">
+                                                <span class="d-block fa-3x pb-4 text-muted">
+                                                    <i class="ni ni-arrow-up text-gradient opacity-70"></i>
+                                                </span> Select a tab above to activate
+                                                <small class="mt-3 fs-b fw-400 text-muted">
+                                                    This blank page message helps protect your privacy, or you can show the first message here automatically through
+                                                    <a href="#">settings page</a>
+                                                </small>
+                                            </h5>
+                                        </div>
+                                        <div class="tab-pane" id="tab-messages" role="tabpanel">
+                                            <div class="custom-scroll h-100">
+                                                <ul class="notification">
+                                                    <li class="unread">
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-c.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Melissa Ayre <span class="badge badge-primary fw-n position-absolute pos-top pos-right mt-1">INBOX</span></span>
+                                                                <span class="msg-a fs-sm">Re: New security codes</span>
+                                                                <span class="msg-b fs-xs">Hello again and thanks for being part...</span>
+                                                                <span class="fs-nano text-muted mt-1">56 seconds ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="unread">
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-a.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Adison Lee</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">2 minutes ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status status-success mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-b.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Oliver Kopyuv</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">3 days ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status status-warning mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-e.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Dr. John Cook PhD</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">2 weeks ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status status-success mr-2">
+                                                                <!-- <img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> -->
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-h.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Sarah McBrook</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">3 weeks ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status status-success mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-m.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Anothony Bezyeth</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">one month ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-flex align-items-center">
+                                                            <span class="status status-danger mr-2">
+                                                                <span class="profile-image rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-j.png')"></span>
+                                                            </span>
+                                                            <span class="d-flex flex-column flex-1 ml-1">
+                                                                <span class="name">Lisa Hatchensen</span>
+                                                                <span class="msg-a fs-sm">Msed quia non numquam eius</span>
+                                                                <span class="fs-nano text-muted mt-1">one year ago</span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab-feeds" role="tabpanel">
+                                            <div class="custom-scroll h-100">
+                                                <ul class="notification">
+
+                                                    <li class="unread">
+                                                        <div class="d-flex align-items-center show-child-on-hover">
+                                                            <span class="d-flex flex-column flex-1">
+                                                                <span class="name d-flex align-items-center">Nuevo Seguidor <span class="badge badge-success fw-n ml-1">NUEVO</span></span>
+                                                                <span class="msg-a fs-sm">
+                                                                    Te ha empezado a seguir <strong>Carlos Burga</strong> <a href="#">(ver perfil)</a>
+                                                                </span>
+                                                                <span class="fs-nano text-muted mt-1">5 mins ago</span>
+                                                            </span>
+                                                            <div class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                                <a href="#" class="text-muted" title="delete"><i class="fal fa-trash-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="d-flex align-items-center show-child-on-hover">
+                                                            <div class="d-flex flex-column flex-1">
+                                                                <span class="name">
+                                                                    Han valorado tu película <strong>Donnie Darko </strong>
+                                                                </span>
+                                                                <span class="fs-nano text-muted mt-1">10 minutes ago</span>
+                                                            </div>
+                                                            <div class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                                <a href="#" class="text-muted" title="delete"><i class="fal fa-trash-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="d-flex align-items-center show-child-on-hover">
+                                                            <!--<img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />-->
+                                                            <div class="d-flex flex-column flex-1">
+
+                                                                <span class="name">
+                                                                    Tienes 4 seguidores nuevos <span class="fw-300"></span>
+                                                                </span>
+
+                                                                <div class="fs-sm d-flex align-items-center mt-2">
+                                                                    <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                                                    <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                                                    <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                                                    <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                                                    <div data-hasmore="+3" class="rounded-circle profile-image-md mr-1">
+                                                                        <span class="profile-image-md mr-1 rounded-circle d-inline-block" style="background-image:url('../../img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <span class="fs-nano text-muted mt-1">55 minutes ago</span>
+                                                            </div>
+                                                            <div class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                                <a href="#" class="text-muted" title="delete"><i class="fal fa-trash-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="d-flex align-items-center show-child-on-hover">
+                                                            <div class="d-flex flex-column flex-1">
+
+                                                                <span class="name">Nueva recomendación! <span class="fw-300"> "The Joker"</span></span>
+
+                                                                <div class="fs-sm d-flex align-items-center mt-1">
+                                                                    <a href="#" class="mr-1 mt-1" title="Cell A-0012">
+                                                                        <span class="d-block img-share" style="background-image:url('../../img/thumbs/pic-7.png'); background-size: cover;"></span>
+                                                                    </a>
+                                                                    <a href="#" class="mr-1 mt-1" title="Patient A-473 saliva">
+                                                                        <span class="d-block img-share" style="background-image:url('../../img/thumbs/pic-8.png'); background-size: cover;"></span>
+                                                                    </a>
+                                                                    <a href="#" class="mr-1 mt-1" title="Patient A-473 blood cells">
+                                                                        <span class="d-block img-share" style="background-image:url('../../img/thumbs/pic-11.png'); background-size: cover;"></span>
+                                                                    </a>
+                                                                    <a href="#" class="mr-1 mt-1" title="Patient A-473 Membrane O.C">
+                                                                        <span class="d-block img-share" style="background-image:url('../../img/thumbs/pic-12.png'); background-size: cover;"></span>
+                                                                    </a>
+                                                                </div>
+                                                                <span class="fs-nano text-muted mt-1">55 minutes ago</span>
+                                                            </div>
+                                                            <div class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                                <a href="#" class="text-muted" title="delete"><i class="fal fa-trash-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="tab-events" role="tabpanel">
+                                            <div class="d-flex flex-column h-100">
+                                                <div class="h-auto">
+                                                    <table class="table table-bordered table-calendar m-0 w-100 h-100 border-0">
+                                                        <tr>
+                                                            <th colspan="7" class="pt-3 pb-2 pl-3 pr-3 text-center">
+                                                                <div class="js-get-date h5 mb-2">[tu cita aquí]</div>
+                                                            </th>
+                                                        </tr>
+                                                        <tr class="text-center">
+                                                            <th>Dom</th>
+                                                            <th>Lun</th>
+                                                            <th>Mar</th>
+                                                            <th>Mie</th>
+                                                            <th>Jue</th>
+                                                            <th>Vie</th>
+                                                            <th>Sab</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-muted bg-faded">30</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>3</td>
+                                                            <td>4</td>
+                                                            <td>5</td>
+                                                            <td><i class="fal fa-birthday-cake mt-1 ml-1 position-absolute pos-left pos-top text-primary"></i> 6</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>7</td>
+                                                            <td>8</td>
+                                                            <td>9</td>
+                                                            <td class="bg-primary-300 pattern-0">10</td>
+                                                            <td>11</td>
+                                                            <td>12</td>
+                                                            <td>13</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>14</td>
+                                                            <td>15</td>
+                                                            <td>16</td>
+                                                            <td>17</td>
+                                                            <td>18</td>
+                                                            <td>19</td>
+                                                            <td>20</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>21</td>
+                                                            <td>22</td>
+                                                            <td>23</td>
+                                                            <td>24</td>
+                                                            <td>25</td>
+                                                            <td>26</td>
+                                                            <td>27</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>28</td>
+                                                            <td>29</td>
+                                                            <td>30</td>
+                                                            <td>31</td>
+                                                            <td class="text-muted bg-faded">1</td>
+                                                            <td class="text-muted bg-faded">2</td>
+                                                            <td class="text-muted bg-faded">3</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="flex-1 custom-scroll">
+                                                    <div class="p-2">
+                                                        <div class="d-flex align-items-center text-left mb-3">
+                                                            <div class="width-5 fw-300 text-primary l-h-n mr-1 align-self-start fs-xxl">
+                                                                15
+                                                            </div>
+                                                            <div class="flex-1">
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="l-h-n fs-md fw-500 opacity-70">
+                                                                        Octubre 2020
+                                                                    </span>
+                                                                    <span class="l-h-n fs-nano fw-400 text-secondary">
+                                                                        Viernes
+                                                                    </span>
+                                                                </div>
+                                                                <div class="mt-3">
+                                                                    <p>
+                                                                        <strong>2:30PM</strong> - Cita 1
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>3:30PM</strong> - Cita 2
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>4:30PM</strong> - Cita 3
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>5:30PM</strong> - Cita 4
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>6:30PM</strong> - Cita 5
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="py-2 px-3 bg-faded d-block rounded-bottom text-right border-faded border-bottom-0 border-right-0 border-left-0">
+                                        <a href="#" class="fs-xs fw-500 ml-auto">ver todas las notificaciones</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- BARRA 1 -->
+                            <div>
+                                <a href="#" data-toggle="dropdown" title="luisfelipesiesquen22@gmail.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                                    <img src="../../img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Luis felipe Siesquen Valdivia">
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                                    <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
+                                        <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                                            <span class="mr-2">
+                                                <img src="../../img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Luis felipe Siesquen Valdivia">
+                                            </span>
+                                            <div class="info-card-text">
+                                                <div class="fs-lg text-truncate text-truncate-lg">Luis felipe Siesquen Valdivia</div>
+                                                <span class="text-truncate text-truncate-md opacity-80">luisfelipesiesquen22@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown-divider m-0"></div>
+
+                                    <a href="#" class="dropdown-item" data-action="app-fullscreen">
+                                        <span data-i18n="drpdwn.fullscreen">Pantalla Completa</span>
+                                        <i class="float-right text-muted fw-n">F11</i>
+                                    </a>
+                                    <a href="#" class="dropdown-item" data-action="app-print">
+                                        <span data-i18n="drpdwn.print">Imprimir</span>
+                                        <i class="float-right text-muted fw-n">Ctrl + P</i>
+                                    </a>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a class="dropdown-item fw-500 pt-3 pb-3" href="#">
+                                        <span data-i18n="drpdwn.page-logout">Cerrar Sesión</span>
+                                        <span class="float-right fw-n"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </header>
+                    <!-- END Page Header -->
+
+                    <!-- BEGIN Page Content -->
+                    <!-- the #js-page-content id is needed for some plugins to initialize -->
+                    <main id="js-page-content" role="main" class="page-content">
+                        <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Película</a></li>
+                            <li class="breadcrumb-item">Lista de películas</li>
+                            <li class="breadcrumb-item active">Ingresar - modificar película</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol>
+                        <div class="subheader">
+                            <h1 class="subheader-title">
+                                <i class='subheader-icon fal fa-edit'></i> Formulario
+                                <small>
+                                    llene los datos de la película que desea ingresar
+                                </small>
+                            </h1>
+                        </div>
+                        <div class="alert alert-primary alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <i class="fal fa-times"></i>
+                                </span>
+                            </button>
+                            <div class="d-flex flex-start w-100">
+                                <div class="mr-2 hidden-md-down">
+                                    <span class="icon-stack icon-stack-lg">
+                                        <i class="base base-6 icon-stack-3x opacity-100 color-primary-500"></i>
+                                        <i class="base base-10 icon-stack-2x opacity-100 color-primary-300 fa-flip-vertical"></i>
+                                        <i class="fal fa-info icon-stack-1x opacity-100 color-white"></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex flex-fill">
+                                    <div class="flex-fill">
+                                        <p class="h6">Información</p>
+                                        los datos deben ser llenados correctamente
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-6">
+
+                                <div id="panel-2" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Datos de la película
+                                        </h2>
+                                        <div class="panel-toolbar">
+                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Minimizar"></button>
+                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Maximizar"></button>
+                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Cerrar"></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div class="panel-tag">
+                                                <p>
+                                                    Datos 1 <br>
+                                                    Datos 2 <br>
+                                                    Datos 3 <br>
+                                                </p>
+                                            </div>
+                                        </div
+
+                                        <div class="panel-container show">
+                                            <div class="panel-content">
+
+                                                <form class="needs-validation" autocomplete="off" novalidate >
+
+
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Nombre de la película</label>
+                                                        <div class="col-12 col-lg-6 ">
+                                                            <input type="text" class="form-control" placeholder="ejemplo: El aro" maxlength="50" id="nombre" required>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Estreno</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <input type="text" class="form-control" placeholder="Seleccione un día" id="datepicker-2" required>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Duración</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <input type="time" class="form-control" placeholder="ejemplo: 1:20 min"  maxlength="10" id="datepicker-2" required>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">País</label>
+                                                        <div class="col-12 col-lg-6 ">
+                                                            <select class="select2 form-control w-100" id="single-default" required>
+
+                                                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                                    <option value="AK">Alaska</option>
+                                                                    <option value="HI">Hawaii</option>
+                                                                </optgroup>
+                                                                <optgroup label="Pacific Time Zone">
+                                                                    <option value="CA">California</option>
+                                                                    <option value="NV">Nevada</option>
+                                                                    <option value="OR">Oregon</option>
+                                                                    <option value="WA">Washington</option>
+                                                                </optgroup>
+                                                                <optgroup label="Mountain Time Zone">
+                                                                    <option value="AZ">Arizona</option>
+                                                                    <option value="CO">Colorado</option>
+                                                                    <option value="ID">Idaho</option>
+                                                                    <option value="MT">Montana</option>
+                                                                    <option value="NE">Nebraska</option>
+                                                                    <option value="NM">New Mexico</option>
+                                                                    <option value="ND">North Dakota</option>
+                                                                    <option value="UT">Utah</option>
+                                                                    <option value="WY">Wyoming</option>
+                                                                </optgroup>
+                                                                <optgroup label="Central Time Zone">
+                                                                    <option value="AL">Alabama</option>
+                                                                    <option value="AR">Arkansas</option>
+                                                                    <option value="IL">Illinois</option>
+                                                                    <option value="IA">Iowa</option>
+                                                                    <option value="KS">Kansas</option>
+                                                                    <option value="KY">Kentucky</option>
+                                                                    <option value="LA">Louisiana</option>
+                                                                    <option value="MN">Minnesota</option>
+                                                                    <option value="MS">Mississippi</option>
+                                                                    <option value="MO">Missouri</option>
+                                                                    <option value="OK">Oklahoma</option>
+                                                                    <option value="SD">South Dakota</option>
+                                                                    <option value="TX">Texas</option>
+                                                                    <option value="TN">Tennessee</option>
+                                                                    <option value="WI">Wisconsin</option>
+                                                                </optgroup>
+                                                                <optgroup label="Eastern Time Zone">
+                                                                    <option value="CT">Connecticut</option>
+                                                                    <option value="DE">Delaware</option>
+                                                                    <option value="FL">Florida</option>
+                                                                    <option value="GA">Georgia</option>
+                                                                    <option value="IN">Indiana</option>
+                                                                    <option value="ME">Maine</option>
+                                                                    <option value="MD">Maryland</option>
+                                                                    <option value="MA">Massachusetts</option>
+                                                                    <option value="MI">Michigan</option>
+                                                                    <option value="NH">New Hampshire</option>
+                                                                    <option value="NJ">New Jersey</option>
+                                                                    <option value="NY">New York</option>
+                                                                    <option value="NC">North Carolina</option>
+                                                                    <option value="OH">Ohio</option>
+                                                                    <option value="PA">Pennsylvania</option>
+                                                                    <option value="RI">Rhode Island</option>
+                                                                    <option value="SC">South Carolina</option>
+                                                                    <option value="VT">Vermont</option>
+                                                                    <option value="VA">Virginia</option>
+                                                                    <option value="WV">West Virginia</option>
+                                                                </optgroup>
+
+                                                            </select>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Director</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <input type="text" class="form-control" maxlength="100" placeholder="ejemplo: Christofer Nolan" id="datepicker-2" required>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Género</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <select data-placeholder="Selecciona un género..." class="js-select2-icons form-control" id="multiple-icons" multiple="multiple" required>
+                                                                <optgroup label="Services">
+                                                                    <option value="wordpress" data-icon="fab fa-wordpress text-dark">WordPress</option>
+                                                                    <option value="codepen" data-icon="fab fa-codepen text-dark">Codepen</option>
+                                                                    <option value="drupal" data-icon="fab fa-drupal color-info-300">Drupal</option>
+                                                                    <option value="pinterest" data-icon="fab fa-pinterest color-primary-300">CSS3</option>
+                                                                    <option value="html" data-icon="fab fa-html5 color-danger-700">HTML5</option>
+                                                                </optgroup>
+                                                                <optgroup label="File types">
+                                                                    <option value="pdf" data-icon="fal fa-file-pdf color-danger-800">PDF</option>
+                                                                    <option value="word" data-icon="fal fa-file-word color-info-700">Word</option>
+                                                                    <option value="excel" data-icon="fal fa-file-excel color-success-700">Excel</option>
+                                                                    <option value="powerpoint" data-icon="fal fa-file color-danger-900">PowerPoint</option>
+                                                                </optgroup>
+                                                                <optgroup label="Browsers">
+                                                                    <option value="chrome" data-icon="fab fa-chrome text-success">Chrome</option>
+                                                                    <option value="firefox" data-icon="fab fa-firefox text-warning">Firefox</option>
+                                                                    <option value="safari" data-icon="fab fa-safari text-primary">Safari</option>
+                                                                    <option value="opera" data-icon="fab fa-opera text-danger">Opera</option>
+                                                                    <option value="IE" data-icon="fab fa-internet-explorer text-info">IE</option>
+                                                                </optgroup>
+                                                            </select>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Sinopsis</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <textarea class="form-control" id="validationTextarea3" placeholder="Ingrese la sinopsis de la película" required rows="4"></textarea>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                llene este campo
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-form-label col-12 col-lg-3 form-label text-lg-right">Url de la película</label>
+                                                        <div class="col-12 col-lg-6 ">
+
+                                                            <input type="url" class="form-control" placeholder="ejemplo: www.youtube.com"  maxlength="50" required>
+
+                                                            <div class="valid-feedback">
+                                                                Verificado!
+                                                            </div>
+
+                                                            <div class="invalid-feedback">
+                                                                url incorrecta
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+                                                        <button class="btn btn-primary ml-auto" type="submit">Registrar</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="panel-content p-0">
+                                            
+                                            <script>
+                                                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                                                (function ()
+                                                {
+                                                    'use strict';
+                                                    window.addEventListener('load', function ()
+                                                    {
+                                                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                                        var forms = document.getElementsByClassName('needs-validation');
+                                                        // Loop over them and prevent submission
+                                                        var validation = Array.prototype.filter.call(forms, function (form)
+                                                        {
+                                                            form.addEventListener('submit', function (event)
+                                                            {
+                                                                if (form.checkValidity() === false)
+                                                                {
+                                                                    event.preventDefault();
+                                                                    event.stopPropagation();
+                                                                }
+                                                                form.classList.add('was-validated');
+                                                            }, false);
+                                                        });
+                                                    }, false);
+                                                })();
+
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </main>
+                    <!-- this overlay is activated only when mobile menu is triggered -->
+                    <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+
+                    <!-- BEGIN Shortcuts -->
+
+                    <!-- BEGIN Shortcuts -->
+                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <ul class="app-list w-auto h-auto p-0 text-left">
+                                        <li>
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                                <div class="icon-stack">
+                                                    <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                    <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+                                                </div>
+                                                <span class="app-list-name">
+                                                    Inicio
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                                <div class="icon-stack">
+                                                    <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+                                                    <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+                                                    <i class="ni ni-envelope icon-stack-1x text-white"></i>
+                                                </div>
+                                                <span class="app-list-name">
+                                                    Mensajes
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- END Shortcuts -->
+
+                </div>
+            </div>
+        </div>
+        <!-- END Page Wrapper -->
+
+        <!-- BARRA DE NAVEGACIÓN -->
+        <nav class="shortcut-menu d-none d-sm-block">
+            <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+            <label for="menu_open" class="menu-open-button ">
+                <span class="app-shortcut-icon d-block"></span>
+            </label>
+            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Desplazarse hacia arriba">
+                <i class="fal fa-arrow-up"></i>
+            </a>
+            <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Cerrar Sesión">
+                <i class="fal fa-sign-out"></i>
+            </a>
+            <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Pantalla completa">
+                <i class="fal fa-expand"></i>
+            </a>
+            <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left" title="Imprimir página">
+                <i class="fal fa-print"></i>
+            </a>
+        </nav>
+        <!-- FIN DE BARRA DE NAVEGACIÓN -->
+
+        <!-- INICIO Messenger -->
+        <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-right">
+                <div class="modal-content h-100">
+                    <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+                        <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                            <span class="mr-2">
+                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                            </span>
+                            <div class="info-card-text">
+                                <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
+                                    Marry James
+                                    <i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Enviar Email</a>
+                                    <a class="dropdown-item" href="#">Bloquear Usuario</a>
+                                </div>
+                                <span class="text-truncate text-truncate-md opacity-80">Mery43</span>
+                            </div>
+                        </div>
+                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0 h-100 d-flex">
+                        <!-- BEGIN msgr-list -->
+                        <div class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+                            <div>
+                                <div class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+                                    <i class="fal fa-search"></i>
+                                </div>
+                                <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="filtrado de contactos" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
+                            </div>
+                            <div class="flex-1 h-100 custom-scroll">
+                                <div class="w-100">
+                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
+                                                <div class="d-table-cell align-middle status status-success status-sm ">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        Merry James
+                                                        <small class="d-block font-italic text-success fs-xs">
+                                                            Online
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
+                                                <div class="d-table-cell align-middle status status-success status-sm ">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        Oliver Kopyuv
+                                                        <small class="d-block font-italic text-success fs-xs">
+                                                            Online
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
+                                                <div class="d-table-cell align-middle status status-warning status-sm ">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        Dr. John Cook PhD
+                                                        <small class="d-block font-italic fs-xs">
+                                                            Away
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
+                                                <div class="d-table-cell align-middle status status-success status-sm ">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        Ali Amdaney
+                                                        <small class="d-block font-italic fs-xs text-success">
+                                                            Online
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
+                                                <div class="d-table-cell align-middle status status-success status-sm">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        Sarah McBrook
+                                                        <small class="d-block font-italic fs-xs text-success">
+                                                            Online
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
+                                                <div class="d-table-cell align-middle status status-sm">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        oliver.kopyuv@gotbootstrap.com
+                                                        <small class="d-block font-italic fs-xs">
+                                                            Offline
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
+                                                <div class="d-table-cell align-middle status status-danger status-sm">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        oliver.kopyuv@gotbootstrap.com
+                                                        <small class="d-block font-italic fs-xs text-danger">
+                                                            Busy
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
+                                                <div class="d-table-cell align-middle status status-sm">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        oliver.kopyuv@gotbootstrap.com
+                                                        <small class="d-block font-italic fs-xs">
+                                                            Offline
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
+                                                <div class="d-table-cell align-middle">
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('../../img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+                                                </div>
+                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                    <div class="text-truncate text-truncate-md">
+                                                        +714651347790
+                                                        <small class="d-block font-italic fs-xs opacity-50">
+                                                            Missed Call
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="filter-message js-filter-message"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="fs-xl d-flex align-items-center p-3">
+                                    <i class="fal fa-cogs"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- END msgr-list -->
+                        <!-- BEGIN msgr -->
+                        <div class="msgr d-flex h-100 flex-column bg-white">
+                            <!-- BEGIN custom-scroll -->
+                            <div class="custom-scroll flex-1 h-100">
+                                <div id="chat_container" class="w-100 p-4">
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment">
+                                        <div class="time-stamp text-center mb-2 fw-400">
+                                            Jun 19
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-sent">
+                                        <div class="chat-message">
+                                            <p>
+                                                Hola Marry, quieres salir hoy?
+                                            </p>
+                                        </div>
+                                        <div class="text-right fw-300 text-muted mt-1 fs-xs">
+                                            3:00 pm
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-get">
+                                        <div class="chat-message">
+                                            <p>
+                                                Hola
+                                            </p>
+                                            <p>
+                                                A que hora?
+                                            </p>
+                                            <p>
+                                                En la tarde estaré ocupada
+                                            </p>
+                                        </div>
+                                        <div class="fw-300 text-muted mt-1 fs-xs">
+                                            3:24 pm
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-sent chat-start">
+                                        <div class="chat-message">
+                                            <p>
+                                                a las 8 de la noche te parece?
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-sent chat-end">
+                                        <div class="chat-message">
+                                            <p>
+                                                Está bien, me vas viendo?
+                                            </p>
+                                        </div>
+                                        <div class="text-right fw-300 text-muted mt-1 fs-xs">
+                                            3:26 pm
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-get chat-start">
+                                        <div class="chat-message">
+                                            <p>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-get">
+                                        <div class="chat-message">
+                                            <p>
+                                                Sí, te espero.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment -->
+                                    <div class="chat-segment chat-segment-get chat-end">
+                                        <div class="chat-message">
+                                            <p>
+                                                Okas
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment -->
+                                    <!-- start .chat-segment for timestamp -->
+                                    <div class="chat-segment">
+                                        <div class="time-stamp text-center mb-2 fw-400">
+                                            Jun 20
+                                        </div>
+                                    </div>
+                                    <!--  end .chat-segment for timestamp -->
+                                </div>
+                            </div>
+                            <!-- END custom-scroll  -->
+                            <!-- BEGIN msgr__chatinput -->
+                            <div class="d-flex flex-column">
+                                <div class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+                                    <div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+                                        <div id="msgr_input" contenteditable="true" data-placeholder="Escribe tu mensaje aquí..." class="height-10 form-content-editable"></div>
+                                    </div>
+                                </div>
+                                <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="Más opciones" data-placement="top">
+                                        <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Adjuntar archivos" data-placement="top">
+                                        <i class="fal fa-paperclip color-fusion-300"></i>
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insertar foto" data-placement="top">
+                                        <i class="fal fa-camera color-fusion-300"></i>
+                                    </a>
+                                    <div class="ml-auto">
+                                        <a href="javascript:void(0);" class="btn btn-info">Enviar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END msgr__chatinput -->
+                        </div>
+                        <!-- END msgr -->
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- FIN Messenger -->
+
+        <!-- INICIO Settings -->
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-right modal-md">
+                <div class="modal-content">
+                    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+                        <h4 class="m-0 text-center color-white">
+                            Opciones de diseño
+                            <small class="mb-0 opacity-80">Configuraciones de interfaz de usuario</small>
+                        </h4>
+                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="settings-panel">
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Diseño de la aplicación
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="fh">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="header-function-fixed"></a>
+                                <span class="onoffswitch-title">Encabezado fijo</span>
+                                <span class="onoffswitch-title-desc">el encabezado está fijo en todo momento</span>
+                            </div>
+                            <div class="list" id="nff">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-fixed"></a>
+                                <span class="onoffswitch-title">Navegación fija</span>
+                                <span class="onoffswitch-title-desc">panel izquierdo es fijo</span>
+                            </div>
+                            <div class="list" id="nfm">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-minify"></a>
+                                <span class="onoffswitch-title">Navegación Minify</span>
+                                <span class="onoffswitch-title-desc">Incline la navegación para maximizar el espacio</span>
+                            </div>
+                            <div class="list" id="nfh">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-hidden"></a>
+                                <span class="onoffswitch-title">Ocultar navegación</span>
+                                <span class="onoffswitch-title-desc">gire el mouse sobre el borde para revelar</span>
+                            </div>
+                            <div class="list" id="nft">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-top"></a>
+                                <span class="onoffswitch-title">Navegación superior</span>
+                                <span class="onoffswitch-title-desc">Reubique el panel izquierdo hacia arriba</span>
+                            </div>
+                            <div class="list" id="mmb">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-main-boxed"></a>
+                                <span class="onoffswitch-title">Diseño en caja</span>
+                                <span class="onoffswitch-title-desc">Encapsula a un contenedor</span>
+                            </div>
+                            <div class="expanded">
+                                <ul class="">
+                                    <li>
+                                        <div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+                                    </li>
+                                </ul>
+                                <div class="list" id="mbgf">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-fixed-bg"></a>
+                                    <span class="onoffswitch-title">Fondo fijo</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Menú móvil
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="nmp">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-push"></a>
+                                <span class="onoffswitch-title">Contenido de inserción</span>
+                                <span class="onoffswitch-title-desc">Contenido presionado en el menú revelar</span>
+                            </div>
+                            <div class="list" id="nmno">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-no-overlay"></a>
+                                <span class="onoffswitch-title">Sin superposición</span>
+                                <span class="onoffswitch-title-desc">Elimina la malla en el menú revelar</span>
+                            </div>
+                            <div class="list" id="sldo">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-slide-out"></a>
+                                <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                                <span class="onoffswitch-title-desc">Menú superpuesto de contenido</span>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Accesibilidad
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="mbf">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-bigger-font"></a>
+                                <span class="onoffswitch-title">Fuente de mayor contenido</span>
+                                <span class="onoffswitch-title-desc">las fuentes de contenido son más grandes para facilitar la lectura</span>
+                            </div>
+                            <div class="list" id="mhc">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-high-contrast"></a>
+                                <span class="onoffswitch-title">Texto de alto contraste (WCAG 2 AA)</span>
+                                <span class="onoffswitch-title-desc">Relación de contraste de texto 4.5: 1</span>
+                            </div>
+                            <div class="list" id="mcb">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-color-blind"></a>
+                                <span class="onoffswitch-title">Daltonismo <sup>(beta)</sup> </span>
+                                <span class="onoffswitch-title-desc">deficiencia de la visión del color</span>
+                            </div>
+                            <div class="list" id="mpc">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-pace-custom"></a>
+                                <span class="onoffswitch-title">Precargador interior</span>
+                                <span class="onoffswitch-title-desc">el precargador estará dentro del contenido</span>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Modificaciones globales
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="mcbg">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-clean-page-bg"></a>
+                                <span class="onoffswitch-title">Limpie el fondo de la página</span>
+                                <span class="onoffswitch-title-desc">agrega más espacios en blancoe</span>
+                            </div>
+                            <div class="list" id="mhni">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-nav-icons"></a>
+                                <span class="onoffswitch-title">Ocultar iconos de navegación</span>
+                                <span class="onoffswitch-title-desc">iconos de navegación invisible</span>
+                            </div>
+                            <div class="list" id="dan">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-disable-animation"></a>
+                                <span class="onoffswitch-title">Deshabilitar animación CSS</span>
+                                <span class="onoffswitch-title-desc">Deshabilita las animaciones basadas en CSS</span>
+                            </div>
+                            <div class="list" id="mhic">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-info-card"></a>
+                                <span class="onoffswitch-title">Ocultar tarjeta de información</span>
+                                <span class="onoffswitch-title-desc">Oculta la tarjeta de información del panel izquierdo</span>
+                            </div>
+                            <div class="list" id="mlph">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-lean-subheader"></a>
+                                <span class="onoffswitch-title">Apoyar subtítulo</span>
+                                <span class="onoffswitch-title-desc">encabezado de página distinguido</span>
+                            </div>
+                            <div class="list" id="mnl">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-nav-link"></a>
+                                <span class="onoffswitch-title">Navegación jerárquica</span>
+                                <span class="onoffswitch-title-desc">Desglose claro de enlaces de navegación</span>
+                            </div>
+                            <div class="list mt-1">
+                                <span class="onoffswitch-title"> Tamaño de fuente global <small>(RESTABLECER AL ACTUALIZAR)</small> </span>
+                                <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> SM
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                        <input type="radio" name="changeFrontSize" checked=""> MD
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> LG
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> XL
+                                    </label>
+                                </div>
+                                <span class="onoffswitch-title-desc d-block mb-g">Cambio <strong>original</strong> tamaño de fuente para efectuar valores rem</span>
+                            </div>
+                            <div class="mt-2 d-table w-100 pl-5 pr-3">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Colores temáticos <small>(superposiciones css base)</small>
+                                    </h5>
+                                    <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                        <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Debido a la latencia de la red y la utilización de la CPU, puede experimentar un breve efecto de parpadeo en la carga de la página que puede mostrar el tema inicial aplicado durante una fracción de segundo. Establecer el estilo / tema preferido en el encabezado evitará que esto suceda.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="expanded theme-colors pl-5 pr-3">
+                                <ul class="m-0">
+                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="../../css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+                                </ul>
+                            </div>
+                            <hr class="mb-0 mt-4">
+                            <div class="pl-5 pr-3 py-3 bg-faded">
+                                <div class="row no-gutters">
+                                    <div class="col-6 pr-1">
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reiniciar ajustes</a>
+                                    </div>
+                                    <div class="col-6 pl-1">
+                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Restablecer de fábrica</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span id="saving"></span>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <script src="../../js/vendors.bundle.js"></script>
+        <script src="../../js/app.bundle.js"></script>
+
+        <script src="../../js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+        <script src="../../js/formplugins/select2/select2.bundle.js"></script>
+
+        <script>
+                                    $(document).ready(function ()
+                                    {
+                                        $(function ()
+                                        {
+                                            $('.select2').select2();
+
+                                            $(".select2-placeholder-multiple").select2(
+                                                    {
+                                                        placeholder: "Select State"
+                                                    });
+                                            $(".js-hide-search").select2(
+                                                    {
+                                                        minimumResultsForSearch: 1 / 0
+                                                    });
+                                            $(".js-max-length").select2(
+                                                    {
+                                                        maximumSelectionLength: 2,
+                                                        placeholder: "Select maximum 2 items"
+                                                    });
+                                            $(".select2-placeholder").select2(
+                                                    {
+                                                        placeholder: "Select a state",
+                                                        allowClear: true
+                                                    });
+
+
+
+                                            $(".js-select2-icons").select2(
+                                                    {
+                                                        minimumResultsForSearch: 1 / 0,
+                                                        templateResult: icon,
+                                                        templateSelection: icon,
+                                                        escapeMarkup: function (elm)
+                                                        {
+                                                            return elm
+                                                        }
+                                                    });
+
+                                            function icon(elm)
+                                            {
+                                                elm.element;
+                                                return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+                                            }
+
+                                            $(".js-data-example-ajax").select2(
+                                                    {
+                                                        ajax:
+                                                                {
+                                                                    url: "https://api.github.com/search/repositories",
+                                                                    dataType: 'json',
+                                                                    delay: 250,
+                                                                    data: function (params)
+                                                                    {
+                                                                        return {
+                                                                            q: params.term, // search term
+                                                                            page: params.page
+                                                                        };
+                                                                    },
+                                                                    processResults: function (data, params)
+                                                                    {
+                                                                        // parse the results into the format expected by Select2
+                                                                        // since we are using custom formatting functions we do not need to
+                                                                        // alter the remote JSON data, except to indicate that infinite
+                                                                        // scrolling can be used
+                                                                        params.page = params.page || 1;
+
+                                                                        return {
+                                                                            results: data.items,
+                                                                            pagination:
+                                                                                    {
+                                                                                        more: (params.page * 30) < data.total_count
+                                                                                    }
+                                                                        };
+                                                                    },
+                                                                    cache: true
+                                                                },
+                                                        placeholder: 'Search for a repository',
+                                                        escapeMarkup: function (markup)
+                                                        {
+                                                            return markup;
+                                                        }, // let our custom formatter work
+                                                        minimumInputLength: 1,
+                                                        templateResult: formatRepo,
+                                                        templateSelection: formatRepoSelection
+                                                    });
+
+                                            function formatRepo(repo)
+                                            {
+                                                if (repo.loading)
+                                                {
+                                                    return repo.text;
+                                                }
+
+                                                var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+                                                        "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+                                                        "<div class='select2-result-repository__meta'>" +
+                                                        "<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+                                                if (repo.description)
+                                                {
+                                                    markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+                                                }
+
+                                                markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+                                                        "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+                                                        "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+                                                        "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+                                                        "</div>" +
+                                                        "</div></div>";
+
+                                                return markup;
+                                            }
+
+                                            function formatRepoSelection(repo)
+                                            {
+                                                return repo.full_name || repo.text;
+                                            }
+
+                                        });
+                                    });
+
+        </script>
+
+        <script>
+            // Class definition
+
+            var controls = {
+                leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
+                rightArrow: '<i class="fal fa-angle-right" style="font-size: 1.25rem"></i>'
+            }
+
+            var runDatePicker = function ()
+            {
+
+                // minimum setup
+                $('#datepicker-1').datepicker(
+                        {
+                            todayHighlight: true,
+                            orientation: "bottom left",
+                            templates: controls
+                        });
+
+
+                // input group layout 
+                $('#datepicker-2').datepicker(
+                        {
+                            todayHighlight: true,
+                            orientation: "bottom left",
+                            templates: controls
+                        });
+
+                // input group layout for modal demo
+                $('#datepicker-modal-2').datepicker(
+                        {
+                            todayHighlight: true,
+                            orientation: "bottom left",
+                            templates: controls
+                        });
+
+                // enable clear button 
+                $('#datepicker-3').datepicker(
+                        {
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                // enable clear button for modal demo
+                $('#datepicker-modal-3').datepicker(
+                        {
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                // orientation 
+                $('#datepicker-4-1').datepicker(
+                        {
+                            orientation: "top left",
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                $('#datepicker-4-2').datepicker(
+                        {
+                            orientation: "top right",
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                $('#datepicker-4-3').datepicker(
+                        {
+                            orientation: "bottom left",
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                $('#datepicker-4-4').datepicker(
+                        {
+                            orientation: "bottom right",
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                // range picker
+                $('#datepicker-5').datepicker(
+                        {
+                            todayHighlight: true,
+                            templates: controls
+                        });
+
+                // inline picker
+                $('#datepicker-6').datepicker(
+                        {
+                            todayHighlight: true,
+                            templates: controls
+                        });
+            }
+
+            $(document).ready(function ()
+            {
+                runDatePicker();
+            });
+
+        </script>
+
+        <script type="text/javascript">
+
+
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            /*	(function() {
+             'use strict';
+             window.addEventListener('load', function() {
+             // Fetch all the forms we want to apply custom Bootstrap validation styles to
+             var forms = document.getElementsByClassName('needs-validation');
+             // Loop over them and prevent submission
+             var validation = Array.prototype.filter.call(forms, function(form) {
+             form.addEventListener('submit', function(event) {
+             if (form.checkValidity() === false) {
+             event.preventDefault();
+             event.stopPropagation();
+             }
+             form.classList.add('was-validated');
+             }, false);
+             });
+             }, false);
+             })();*/
+
+        </script>
+    </body>
+</html>

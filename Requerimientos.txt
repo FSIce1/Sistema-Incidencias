@@ -1,0 +1,61 @@
+
+==============
+REQUERIMIENTOS
+==============
+
+
+1. Realizar uns seguimientos a las solicitudes y servicios sobre ativos de TI 
+(laptops, redes, software, etc) (Ya está) ======================================================
+
+2. Logueo de usuario (Ya está) ======================================================
+
+3. Elegir su problema o ayuda que requiere (Ya está) ======================================================
+
+4. Asignación del técnico o cargo de la solución de problema
+
+5. Asignar prioridad a los problemas (Ya está) ======================================================
+
+6. Clasificación del servicio dado por el técnico (Ya está) ======================================================
+
+7. Listado de incidencias que se presentan (Ya está) ======================================================
+
+8. Informe de la solución de problemas (Ya está) ======================================================
+
+9. Otorgar estados a los incidentes(Ya está) ======================================================
+
+10. Estadística de los trabajadores con más incidentes solucionados
+
+
+El trabajador informa al área de sistemas sobre un incidente
+Se asigna la incidencia
+El técnico registra y atiende la asistencia
+
+
+ETAPAS DEL PROCESO DE NEGOCIO (MESA DE AYUDA)
+
+1. Registrar Problema 
+
+	-> Registrar el usuario (nombre, apellidos, código, etc)  (Ya está) ======================================================
+	-> Mostrar catálogo de TI (Ya está) ======================================================
+	-> Mostrar los incidentes con respecto a las TI (Ya está) ======================================================
+	-> Registro del incidente (hora, fecha) (Ya está) ======================================================
+	-> Aviso al área de sistemas (Ya está) ======================================================
+
+2. Asignación del trabajador
+
+	-> Registro del técnico (nombres, apellidos, código, etc) (Ya está) ======================================================
+	-> Elección del técnico por parte del administrador (Ya está) ======================================================
+	-> Asignación de la gravedad (prioridad) de la incidencia por parte del administrador (Ya está) ======================================================
+
+3. Solución del problema
+
+	-> El técnico recibe el detalle del incidente por parte del administrador (Ya está) ======================================================
+	-> Criterio de espera para la solución del incidente (Ya está) ======================================================
+	-> Labor técnica para solucionar el incidente (Ya está) ======================================================
+
+4. Informe final del técnico
+
+	-> Reporte acerca de los detalles de la solución del problema al administrador 
+	   y al usuario (Ya está) ======================================================
+
+	
