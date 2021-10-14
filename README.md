@@ -1,4 +1,4 @@
-# Proyecto de Sistema de Incidencias
+# Sistema de Incidencias
 ### _Siesquen Valdivia, Luis Felipe_
 
 Administra y mantiene listas de incidentes
@@ -16,6 +16,16 @@ Administra y mantiene listas de incidentes
 
 # Login
 ![alt text](https://i.ibb.co/HrbNn7Y/Login.png)
+
+#### Usuario Administrador
+> ***Admin123***
+#### Contraseña Administrador
+> ***admin123***
+
+#### Usuario Técnico
+> ***Luis23***
+#### Contraseña Técnico
+> ***contra123***
 
 # Registro
 ![alt text](https://i.ibb.co/ydMTGZj/Registro.png)
